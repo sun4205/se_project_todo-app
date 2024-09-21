@@ -38,7 +38,6 @@ addTodoForm.addEventListener("submit", (evt) => {
   const name = evt.target.name.value;
   const dateInput = evt.target.date.value;
 
-  
   const date = new Date(dateInput);
   date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
 
@@ -49,9 +48,13 @@ addTodoForm.addEventListener("submit", (evt) => {
   closeModal(addTodoPopup);
 });
 
-initialTodos.forEach((item) => {
+const renderTodo = (item) => {
   const todo = generateTodo(item);
   todosList.append(todo);
+};
+
+initialTodos.forEach((item) => {
+  renderTodo(item);
 });
 
 const newTodoValidator = new FormValidator(validationConfig, addTodoForm);
