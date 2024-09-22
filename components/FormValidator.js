@@ -81,9 +81,14 @@ class FormValidator {
     this._setEventListeners();
   }
 
+  _disableButton() {
+    this._buttonElement.disabled = true;
+    this._buttonElement.classList.add(this._inactiveButtonClass);
+  }
+
   resetValidation() {
-    this._formEl.reset()
-    this._toggleButtonState(this._inputList, this._buttonElement);
+    this._formEl.reset();
+    this._disableButton();
   }
 }
 
