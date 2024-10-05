@@ -13,21 +13,20 @@ const addTodoCloseBtn = addTodoPopupEl.querySelector(".popup__close");
 const todoTemplate = document.querySelector("#todo-template");
 const todosList = document.querySelector(".todos__list");
 
-const todoCounter = new TodoCounter(initialTodos,".counter__text");
-
+const todoCounter = new TodoCounter(initialTodos, ".counter__text");
 
 const addTodoPopup = new PopupWithForm({
   popupSelector: "#add-todo-popup",
-  handleFormSubmit: (evt) => {
-    const name = evt.name;
-    const dateInput = evt.date;
-
+  handleFormSubmit: (inputValues) => {
+    const name = inputValues.name;
+    const dateInput = inputValues.date;
     const date = new Date(dateInput);
     date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
-
     const id = uuidv4();
 
-    const newTodo = { name, date, id };
+    const newTodo = { name, date, id, completed: false };
+
+    todoCounter.updateTotal(true);
 
     renderTodo(newTodo);
 
@@ -39,7 +38,7 @@ const addTodoPopup = new PopupWithForm({
 addTodoPopup.setEventListeners();
 
 const generateTodo = (data) => {
-  const todo = new Todo(data, "#todo-template");
+  const todo = new Todo(data, "#todo-template", handleCheck, handleDelete);
   const todoElement = todo.getView();
 
   return todoElement;
@@ -47,51 +46,37 @@ const generateTodo = (data) => {
 
 const section = new Section({
   items: initialTodos,
-  _renderer: (item) => {
+  renderer: (item) => {
     const todoElement = generateTodo(item);
-    this.addItem(todoElement);
+    section.addItem(todoElement);
   },
   containerSelector: ".todos__list",
 });
 
 section.renderItems();
 
-// const openModal = (modal) => {
-//   modal.classList.add("popup_visible");
-// };
-
 const closeModal = (modal) => {
   modal.classList.remove("popup_visible");
 };
+
+function handleCheck(completed) {
+  todoCounter.updateCompleted(completed);
+}
+
+function handleDelete(completed) {
+  if (completed) {
+    todoCounter.updateCompleted(false);
+  }
+}
 
 addTodoButton.addEventListener("click", () => {
   addTodoPopup.open();
 });
 
-// addTodoCloseBtn.addEventListener("click", () => {
-//   addTodoPopup.close();
-// });
-
 const renderTodo = (item) => {
   const todo = generateTodo(item);
   section.addItem(todo);
 };
-
-// addTodoForm.addEventListener("submit", (evt) => {
-//   evt.preventDefault();
-//   const name = evt.target.name.value;
-//   const dateInput = evt.target.date.value;
-
-//   const date = new Date(dateInput);
-//   date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
-
-//   const id = uuidv4();
-//   const values = { name, date, id };
-//   renderTodo(values);
-//   closeModal(addTodoPopupEl);
-//   newTodoValidator.resetValidation();
-//   addTodoPopup.close();
-// });
 
 const newTodoValidator = new FormValidator(validationConfig, addTodoForm);
 newTodoValidator.enableValidation();
