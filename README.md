@@ -8,11 +8,11 @@ This project is a great way to practice JavaScript concepts like OOP, event hand
 
 ## Technology
 
-- HTML: HTML is the standard markup language for Web pages.
-- CSS: CSS (Cascading Style Sheets) allows you to create great-looking web pages.
+- HTML: The standard markup language for creating web pages.
+- CSS: A stylesheet language used to design and style web pages.
 - javascript: Handles the app's functionality, including adding and deleting tasks, as well as event handling.
-- OOP(Object-Oriented Programming): It helps reuses the data and organize code.
-- Module : The code is split into small pieces, making it convenient to reuse and easier to maintain.
+- OOP(Object-Oriented Programming): Helps organize and reuse code efficiently.
+- Module : Splits the code into smaller, reusable pieces, making the app easier to maintain.
 
 ## Screenshot
 
@@ -20,4 +20,4 @@ This project is a great way to practice JavaScript concepts like OOP, event hand
 
 ## Deployment
 
-project on GitHub Pages [here]( https://sun4205.github.io/se_project_todo-app/)
+- project on GitHub Pages [here]( https://sun4205.github.io/se_project_todo-app/)
