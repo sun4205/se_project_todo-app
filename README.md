@@ -14,6 +14,10 @@ This project is a great way to practice JavaScript concepts like OOP, event hand
 - OOP(Object-Oriented Programming): It helps reuses the data and organize code.
 - Module : The code is split into small pieces, making it convenient to reuse and easier to maintain.
 
+## Screenshot
+
+- This is screenshoot [here](./images/Screenshot.png)
+
 ## Deployment
 
 project on GitHub Pages [here]( https://sun4205.github.io/se_project_todo-app/)
